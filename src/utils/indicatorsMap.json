@@ -1,0 +1,103 @@
+{
+    "Economic Indicators": {
+        "NY.GDP.MKTP.CD": "GDP (current US dollars)",
+        "NY.GDP.PCAP.CD": "GDP per capita (current US dollars)",
+        "NY.GDP.MKTP.KD.ZG": "GDP growth rate (annual %)",
+        "BX.KLT.DINV.WD.GD.ZS": "FDI, net inflows (% of GDP)",
+        "SI.POV.GINI": "Gini index (measuring income inequality)",
+        "NE.EXP.GNFS.ZS": "Exports of goods and services (% of GDP)",
+        "NE.IMP.GNFS.ZS": "Imports of goods and services (% of GDP)",
+        "GC.DOD.TOTL.GD.ZS": "General government gross debt (% of GDP)",
+        "FP.CPI.TOTL": "Consumer price index (2010 = 100)",
+        "FP.CPI.TOTL.ZG": "Inflation, consumer prices (annual %)",
+        "AG.PRD.FOOD.XD": "Food production index (2004-2006 = 100)"
+    },
+    "Education Indicators": {
+        "SE.ADT.LITR.ZS": "Literacy rate for adults (% of the population aged 15 and above)",
+        "SE.PRM.ENRR": "Primary school enrollment ratio",
+        "SE.SEC.ENRR": "Secondary school enrollment ratio",
+        "SE.TER.ENRR": "Tertiary school enrollment ratio",
+        "SE.XPD.TOTL.GD.ZS": "Education expenditure as % of GDP",
+        "SE.ENR.PRIM.FM.ZS": "Gender parity in primary school enrollment (female %)",
+        "SE.ADT.LITR.FE.ZS": "Literacy rate, adult female (% of females ages 15 and above)",
+        "SE.ADT.LITR.MA.ZS": "Literacy rate, adult male (% of males ages 15 and above)"
+    },
+    "Health Indicators": {
+        "SP.DYN.LE00.IN": "Life expectancy at birth (years)",
+        "SH.DYN.MORT": "Mortality rate, under-5 (per 1,000 live births)",
+        "SH.STA.MMRT": "Maternal mortality ratio (per 100,000 live births)",
+        "SH.XPD.CHEX.GD.ZS": "Current health expenditure (% of GDP)",
+        "SH.XPD.CHEX.PC.CD": "Current health expenditure per capita (current US$)",
+        "SP.DYN.IMRT.FE.IN": "Mortality rate, infant, female (per 1,000 live births)",
+        "SP.DYN.IMRT.MA.IN": "Mortality rate, infant, male (per 1,000 live births)",
+        "SP.DYN.LE00.FE.IN": "Life expectancy at birth, female (years)",
+        "SP.DYN.LE00.MA.IN": "Life expectancy at birth, male (years)",
+        "SP.DYN.TFRT.IN": "Fertility rate, total (births per woman)",
+        "SP.DYN.TO65.FE.ZS": "Survival to age 65, female (% of cohort)",
+        "SP.DYN.TO65.MA.ZS": "Survival to age 65, male (% of cohort)",
+        "SH.IMM.MEAS": "Immunization rate, measles (% of children under 1 year old)"
+    },
+    "Social Development Indicators": {
+        "SI.POV.DDAY": "Poverty headcount ratio at national poverty lines (% of population)",
+        "SL.UEM.TOTL.FE.ZS": "Female unemployment rate (% of total female labor force)",
+        "SH.STA.ODFC.RU.ZS": "People practicing open defecation, rural (% of rural population)",
+        "SH.STA.ODFC.UR.ZS": "People practicing open defecation, urban (% of urban population)",
+        "SP.RUR.TOTL": "Rural population",
+        "SP.URB.TOTL": "Urban population",
+        "SP.RUR.TOTL.ZS": "Rural population (% of total population)",
+        "SP.URB.TOTL.IN.ZS": "Urban population (% of total population)",
+        "SM.POP.NETM": "Net migration"
+    },
+    "Population Indicators": {
+        "SP.POP.0004.FE.5Y": "Population ages 0-4, female (% of female population)",
+        "SP.POP.0004.MA.5Y": "Population ages 0-4, male (% of male population)",
+        "SP.POP.0014.FE.ZS": "Population ages 0-14, female (% of total)",
+        "SP.POP.0014.MA.ZS": "Population ages 0-14, male (% of total)",
+        "SP.POP.1564.FE.ZS": "Population ages 15-64, female (% of total)",
+        "SP.POP.1564.MA.ZS": "Population ages 15-64, male (% of total)",
+        "SP.POP.65UP.FE.ZS": "Population ages 65 and above, female (% of total)",
+        "SP.POP.65UP.MA.ZS": "Population ages 65 and above, male (% of total)",
+        "SP.POP.DPND": "Age dependency ratio (% of working-age population)",
+        "SP.POP.DPND.OL": "Age dependency ratio, old (% of working-age population)",
+        "SP.POP.DPND.YG": "Age dependency ratio, young (% of working-age population)",
+        "SP.POP.GROW": "Population growth (annual %)",
+        "SP.POP.TOTL": "Population, total",
+        "SP.POP.TOTL.FE.IN": "Population, female",
+        "SP.POP.TOTL.FE.ZS": "Population, female (% of total)",
+        "SP.POP.TOTL.MA.IN": "Population, male",
+        "SP.POP.TOTL.MA.ZS": "Population, male (% of total)"
+    },
+    "Gender and Fertility Indicators": {
+        "SP.HOU.FEMA.ZS": "Female headed households (% of households with a female head)",
+        "SP.M15.2024.FE.ZS": "Women who were first married by age 15 (% of women ages 20-24)",
+        "SP.M18.2024.FE.ZS": "Women who were first married by age 18 (% of women ages 20-24)",
+        "SP.MTR.1519.ZS": "Teenage mothers (% of women ages 15-19 who have had children or are currently pregnant)",
+        "SP.MTR.1519.Q1.ZS": "Teenage pregnancy and motherhood (% of women ages 15-19 who have had children or are currently pregnant): Q1 (lowest)",
+        "SP.MTR.1519.Q5.ZS": "Teenage pregnancy and motherhood (% of women ages 15-19 who have had children or are currently pregnant): Q5 (highest)"
+    },
+    "Technological and Infrastructure Progress Indicators": {
+        "EG.ELC.ACCS.ZS": "Access to electricity (% of population)",
+        "EG.USE.ELEC.KH.PC": "Electric power consumption (kWh per capita)",
+        "IT.NET.USER.ZS": "Internet users (% of population)",
+        "IT.CEL.SETS.P2": "Mobile cellular subscriptions (per 100 people)",
+        "EG.CFT.ACCS.ZS": "Access to clean fuels and technologies for cooking (% of population)"
+    },
+    "Environmental Sustainability Indicators": {
+        "EG.ELC.RNEW.ZS": "Renewable electricity output (% of total electricity output)",
+        "EG.IMP.CONS.ZS": "Energy imports, net (% of energy use)",
+        "EG.USE.COMM.FO.ZS": "Fossil fuel energy consumption (% of total)"
+    },
+    "Political and Governance Indicators": {
+        "SG.VAW.1549.ZS": "Proportion of women subjected to physical and/or sexual violence in the last 12 months (% of women age 15-49)",
+        "IC.BUS.EASE.XQ": "Ease of doing business index",
+        "CC.EST": "Control of Corruption: Estimate"
+    },
+    "Employment and Time Use Indicators": {
+        "SL.AGR.EMPL.FE.ZS": "Employment in agriculture, female (% of female employment) (modeled ILO estimate)",
+        "SL.AGR.EMPL.MA.ZS": "Employment in agriculture, male (% of male employment) (modeled ILO estimate)",
+        "SL.UEM.TOTL.ZS": "Unemployment rate (% of total labor force)"
+    },
+    "Business Indicators": {
+        "IC.REG.DURS": "Time required to start a business (days)"
+    }
+}
