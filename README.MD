@@ -1,4 +1,3 @@
-```markdown
 # Country Stats Package
 
 ![License](https://img.shields.io/npm/l/nation-progress-tracker)
@@ -12,19 +11,21 @@ This package enables users to track a nation's development progress over time, o
 
 ## Table of Contents
 
-- [Installation](#installation)
-- [Functions](#functions)
-  - [fetchCountrySummary](#fetchcountrysummary)
-  - [fetchSingleIndicator](#fetchsingleindicator)
-  - [get_all_indicators](#get_all_indicators)
-- [Usage Example](#usage-example)
-  - [Using with Express.js](#using-with-expressjs)
-- [API Documentation](#api-documentation)
-  - [fetchCountrySummary](#fetchcountrysummary-1)
-  - [fetchSingleIndicator](#fetchsingleindicator-1)
-  - [get_all_indicators](#get_all_indicators-1)
-- [Contributing](#contributing)
-- [License](#license)
+- [Country Stats Package](#country-stats-package)
+  - [Table of Contents](#table-of-contents)
+  - [Installation](#installation)
+  - [Functions](#functions)
+    - [fetchCountrySummary](#fetchcountrysummary)
+    - [fetchSingleIndicator](#fetchsingleindicator)
+    - [get\_all\_indicators](#get_all_indicators)
+  - [Usage Example](#usage-example)
+    - [Using with Express.js](#using-with-expressjs)
+  - [API Documentation](#api-documentation)
+    - [fetchCountrySummary(country: string): Promise](#fetchcountrysummarycountry-string-promise)
+    - [fetchSingleIndicator(country: string, indicator: string): Promise\<DataEntry\[\]\>](#fetchsingleindicatorcountry-string-indicator-string-promisedataentry)
+    - [get\_all\_indicators(): Promise\<AllIndicator\[\]\>](#get_all_indicators-promiseallindicator)
+  - [Contributing](#contributing)
+  - [License](#license)
 
 ## Installation
 
@@ -283,4 +284,3 @@ Please ensure your code follows the project's coding standards and includes rele
 ## License
 
 This project is licensed under the MIT License.
-```
