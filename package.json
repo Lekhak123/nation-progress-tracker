@@ -4,6 +4,14 @@
   "description": "Wrapper for the World Bank API, enabling users to fetch and manage country-specific statistics across sectors like economy, education, health, and social development.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lekhak123/nation-progress-tracker.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Lekhak123/nation-progress-tracker/issues"
+  },
+  "homepage": "https://github.com/Lekhak123/nation-progress-tracker/blob/main/README.MD",
   "scripts": {
     "build": "tsc",
     "prepublishOnly": "npm run build",
