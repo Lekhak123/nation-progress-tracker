@@ -1,3 +1,4 @@
+
 # Country Stats Package
 
 ![License](https://img.shields.io/npm/l/nation-progress-tracker)
@@ -6,8 +7,7 @@
 
 This package is a Node.js wrapper for the World Bank API, allowing users to easily fetch and manage country-specific statistics. It provides access to a wide range of indicators across sectors like economic, education, health, social development, and more.
 
-This package enables users to track a nation's development progress over time, offering valuable insights for holding governments accountable, particularly in developing and underdeveloped countries. By leveraging data from the World Bank, it helps highlight areas of improvement and transparency. Users can look up any specific indicators listed by the [World Bank](https://data.worldbank.org/indicator)
-
+This package enables users to track a nation's development progress over time, offering valuable insights for holding governments accountable, particularly in developing and underdeveloped countries. By leveraging data from the World Bank, it helps highlight areas of improvement and transparency. Users can look up any specific indicators listed by the [World Bank](https://data.worldbank.org/indicator).
 
 ## Table of Contents
 
@@ -18,12 +18,14 @@ This package enables users to track a nation's development progress over time, o
     - [fetchCountrySummary](#fetchcountrysummary)
     - [fetchSingleIndicator](#fetchsingleindicator)
     - [get\_all\_indicators](#get_all_indicators)
+    - [get\_country3letterCode](#get_country3lettercode)
   - [Usage Example](#usage-example)
     - [Using with Express.js](#using-with-expressjs)
   - [API Documentation](#api-documentation)
     - [fetchCountrySummary(country: string): Promise](#fetchcountrysummarycountry-string-promise)
     - [fetchSingleIndicator(country: string, indicator: string): Promise\<DataEntry\[\]\>](#fetchsingleindicatorcountry-string-indicator-string-promisedataentry)
     - [get\_all\_indicators(): Promise\<AllIndicator\[\]\>](#get_all_indicators-promiseallindicator)
+    - [get\_country3letterCode(countryName: string): Promise\<string\[\]\>](#get_country3lettercodecountryname-string-promisestring)
   - [Contributing](#contributing)
   - [License](#license)
 
@@ -48,85 +50,21 @@ yarn add nation-progress-tracker
 Fetches comprehensive statistics for a given 3-letter country code.
 
 **Parameters:**
-- `country` (_string_): The 3-letter ISO country code (e.g., "NPL", "CAN").
+- country (_string_): The 3-letter ISO country code (e.g., "NPL", "CAN").
 
 **Returns:**
-- `Promise<CountryStats>`: A promise that resolves to an object containing country statistics.
-
-**Return Type Example:**
-```typescript
-interface CountryStats {
-    country: string; // Country name
-    countryCode: string; // ISO-3 country code
-    indicators: {
-        [principal: string]: {
-            [indicatorCode: string]: {
-                name: string; // Indicator name
-                data: { year: string; value: number }[]; // Yearly data for the indicator
-            };
-        };
-    };
-    failedIndicators: {
-        principal: string; // Principal category name
-        indicators: string[]; // List of failed indicator codes
-    }[];
-}
-```
-
-**Example:**
-
-```typescript
-import { fetchCountrySummary } from 'nation-progress-tracker';
-
-(async () => {
-    try {
-        const stats = await fetchCountrySummary('NPL');
-        console.log(stats);
-    } catch (error) {
-        console.error(error.message);
-    }
-})();
-```
+- Promise<CountryStats>: A promise that resolves to an object containing country statistics.
 
 ### fetchSingleIndicator
 
 Fetches data for a specific indicator for a given country.
 
 **Parameters:**
-- `country` (_string_): The 3-letter ISO country code (e.g., "NPL", "CAN").
-- `indicator` (_string_): The indicator code (e.g., "NY.GDP.MKTP.CD").
+- country (_string_): The 3-letter ISO country code (e.g., "NPL", "CAN").
+- indicator (_string_): The indicator code (e.g., "NY.GDP.MKTP.CD").
 
 **Returns:**
-- `Promise<DataEntry[]>`: A promise that resolves to an array of data entries.
-
-**Return Type Example:**
-```typescript
-interface DataEntry {
-    indicator: Indicator; // Indicator information
-    country: Country; // Country information
-    countryiso3code: string; // ISO-3 country code
-    date: string; // Year of the data entry
-    value: number | null; // Data value or null if unavailable
-    unit: string; // Unit of the data
-    obs_status: string; // Observation status
-    decimal: number; // Decimal places for the value
-}
-```
-
-**Example:**
-
-```typescript
-import { fetchSingleIndicator } from 'nation-progress-tracker';
-
-(async () => {
-    try {
-        const indicatorStats = await fetchSingleIndicator('NPL', 'NY.GDP.MKTP.CD');
-        console.log(indicatorStats);
-    } catch (error) {
-        console.error(error.message);
-    }
-})();
-```
+- Promise<DataEntry[]>: A promise that resolves to an array of data entries.
 
 ### get_all_indicators
 
@@ -136,32 +74,19 @@ Fetches all available indicators from the World Bank API.
 - None
 
 **Returns:**
-- `Promise<AllIndicator[]>`: A promise that resolves to an array of indicators.
+- Promise<AllIndicator[]>: A promise that resolves to an array of indicators.
 
-**Return Type Example:**
-```typescript
-interface AllIndicator {
-    id: string; // Indicator ID
-    name: string; // Indicator name
-    sourceOrganization: string; // Organization providing the source
-    sourceNote: string; // Additional notes regarding the source
-}
-```
+**Note:** This API may take significant time to execute as it needs to scrape hundreds of pages of results.
 
-**Example:**
+### get_country3letterCode
 
-```typescript
-import { get_all_indicators } from 'nation-progress-tracker';
+Fetches the 3-letter country code for a given country name.
 
-(async () => {
-    try {
-        const indicators = await get_all_indicators();
-        console.log(indicators);
-    } catch (error) {
-        console.error(error.message);
-    }
-})();
-```
+**Parameters:**
+- countryName (_string_): The name of the country (e.g., "Nepal", "Canada").
+
+**Returns:**
+- Promise<string[]>: A promise that resolves to an array of 3-letter country codes.
 
 ## Usage Example
 
@@ -181,13 +106,28 @@ npm install express
 
 ```typescript
 import express, { Express, Request, Response } from 'express';
-import { fetchCountrySummary, fetchSingleIndicator, get_all_indicators } from 'nation-progress-tracker';
+import { fetchCountrySummary, fetchSingleIndicator, get_all_indicators, get_country3letterCode } from 'nation-progress-tracker';
 
 const app: Express = express();
 const port: number = 3000;
 app.use(express.json());
 
-app.get('/nation-progress-tracker/:country', async (req: Request, res: Response): Promise<void> => {
+app.get('/country-code/:countryName', async (req: Request, res: Response): Promise<void> => {
+    const countryName: string = req.params.countryName.trim();
+    try {
+        const codes: string[] = await get_country3letterCode(countryName);
+        if (codes.length === 0) {
+            res.status(404).json({ message: `No country codes found for "${countryName}".` });
+            return;
+        }
+        res.json({ codes });
+    } catch (error: any) {
+        console.error(`Error fetching country codes for ${countryName}:`, error.message);
+        res.status(500).json({ error: 'Failed to fetch country codes' });
+    }
+});
+
+app.get('/country-stats/:country', async (req: Request, res: Response): Promise<void> => {
     const country = req.params.country.toUpperCase().trim();
     try {
         const data = await fetchCountrySummary(country);
@@ -232,16 +172,38 @@ app.listen(port, (): void => {
 Fetches comprehensive statistics for a specified country.
 
 **Parameters:**
-- `country`: A 3-letter ISO country code (e.g., "NPL", "CAN").
+- country: A 3-letter ISO country code (e.g., "NPL", "CAN").
 
 **Returns:**
 - A promise that resolves to a `CountryStats` object containing detailed statistics.
 
-**Example:**
+**Example Response:**
 
-```typescript
-const stats = await fetchCountrySummary('NPL');
-console.log(stats);
+```json
+{
+  "country": "Nepal",
+  "countryCode": "NPL",
+  "indicators": {
+    "Economic Indicators": {
+      "NY.GDP.MKTP.CD": {
+        "name": "GDP (current US dollars)",
+        "data": [
+          { "year": "2020", "value": 35000000000 },
+          { "year": "2021", "value": 36000000000 }
+        ]
+      }
+    },
+    "Social Indicators": {
+      "SP.POP.TOTL": {
+        "name": "Population, total",
+        "data": [
+          { "year": "2020", "value": 30000000 },
+          { "year": "2021", "value": 30500000 }
+        ]
+      }
+    }
+  }
+}
 ```
 
 ### fetchSingleIndicator(country: string, indicator: string): Promise<DataEntry[]>
@@ -249,17 +211,25 @@ console.log(stats);
 Fetches data for a specific indicator within a given country.
 
 **Parameters:**
-- `country`: A 3-letter ISO country code (e.g., "NPL", "CAN").
-- `indicator`: The indicator code (e.g., "NY.GDP.MKTP.CD").
+- country: A 3-letter ISO country code (e.g., "NPL", "CAN").
+- indicator: The indicator code (e.g., "NY.GDP.MKTP.CD").
 
 **Returns:**
 - A promise that resolves to an array of `DataEntry`.
 
-**Example:**
+**Example Response:**
 
-```typescript
-const indicatorStats = await fetchSingleIndicator('NPL', 'NY.GDP.MKTP.CD');
-console.log(indicatorStats);
+```json
+{
+  "country": "Nepal",
+  "countryCode": "NPL",
+  "indicatorCode": "NE.IMP.GNFS.ZS",
+  "indicatorName": "Imports of goods and services (% of GDP)",
+  "data": [
+    { "year": "2020", "value": 23.5 },
+    { "year": "2021", "value": 24.2 }
+  ]
+}
 ```
 
 ### get_all_indicators(): Promise<AllIndicator[]>
@@ -269,17 +239,50 @@ Fetches all available indicators from the World Bank API.
 **Returns:**
 - A promise that resolves to an array of `AllIndicator`.
 
-**Example:**
+**Example Response:**
 
-```typescript
-const indicators = await get_all_indicators();
-console.log(indicators);
+```json
+[
+  {
+    "id": "SP.POP.TOTL",
+    "name": "Population, total",
+    "sourceOrganization": "World Bank",
+    "sourceNote": "World Bank data"
+  },
+  {
+    "id": "NY.GDP.MKTP.CD",
+    "name": "GDP (current US dollars)",
+    "sourceOrganization": "World Bank",
+    "sourceNote": "World Bank data"
+  }
+]
+```
+
+**Note:** This API may take significant time to execute as it scrapes hundreds of pages of results.
+
+### get_country3letterCode(countryName: string): Promise<string[]>
+
+Fetches the 3-letter country code for a given country
+
+ name.
+
+**Parameters:**
+- countryName: The name of the country (e.g., "Nepal", "Canada").
+
+**Returns:**
+- A promise that resolves to an array of 3-letter country codes.
+
+**Example Response:**
+
+```json
+{
+  "codes": ["NPL"]
+}
 ```
 
 ## Contributing
 
-Contributions are welcome!
-Please ensure your code follows the project's coding standards and includes relevant tests.
+Contributions are welcome! Please ensure your code follows the project's coding standards and includes relevant tests.
 
 ## License
 
