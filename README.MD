@@ -15,15 +15,15 @@ This package enables users to track a nation's development progress over time, o
   - [Table of Contents](#table-of-contents)
   - [Installation](#installation)
   - [Functions](#functions)
-    - [fetchCountrySummary](#fetchcountrysummary)
-    - [fetchSingleIndicator](#fetchsingleindicator)
+    - [getCountryStats](#getcountrystats)
+    - [getIndicatorStats](#getindicatorstats)
     - [get\_all\_indicators](#get_all_indicators)
     - [get\_country3letterCode](#get_country3lettercode)
   - [Usage Example](#usage-example)
     - [Using with Express.js](#using-with-expressjs)
   - [API Documentation](#api-documentation)
-    - [fetchCountrySummary(country: string): Promise](#fetchcountrysummarycountry-string-promise)
-    - [fetchSingleIndicator(country: string, indicator: string): Promise\<DataEntry\[\]\>](#fetchsingleindicatorcountry-string-indicator-string-promisedataentry)
+    - [getCountryStats(country: string): Promise](#getcountrystatscountry-string-promise)
+    - [getIndicatorStats(country: string, indicator: string): Promise\<DataEntry\[\]\>](#getindicatorstatscountry-string-indicator-string-promisedataentry)
     - [get\_all\_indicators(): Promise\<AllIndicator\[\]\>](#get_all_indicators-promiseallindicator)
     - [get\_country3letterCode(countryName: string): Promise\<string\[\]\>](#get_country3lettercodecountryname-string-promisestring)
   - [Contributing](#contributing)
@@ -45,7 +45,7 @@ yarn add nation-progress-tracker
 
 ## Functions
 
-### fetchCountrySummary
+### getCountryStats
 
 Fetches comprehensive statistics for a given 3-letter country code.
 
@@ -55,7 +55,7 @@ Fetches comprehensive statistics for a given 3-letter country code.
 **Returns:**
 - Promise<CountryStats>: A promise that resolves to an object containing country statistics.
 
-### fetchSingleIndicator
+### getIndicatorStats
 
 Fetches data for a specific indicator for a given country.
 
@@ -103,10 +103,9 @@ npm install express
 ```
 
 **Example `index.ts`:**
-
 ```typescript
 import express, { Express, Request, Response } from 'express';
-import { fetchCountrySummary, fetchSingleIndicator, get_all_indicators, get_country3letterCode } from 'nation-progress-tracker';
+import { getCountryStats, getIndicatorStats, get_all_indicators, get_country3letterCode } from 'nation-progress-tracker';
 
 const app: Express = express();
 const port: number = 3000;
@@ -130,7 +129,7 @@ app.get('/country-code/:countryName', async (req: Request, res: Response): Promi
 app.get('/country-stats/:country', async (req: Request, res: Response): Promise<void> => {
     const country = req.params.country.toUpperCase().trim();
     try {
-        const data = await fetchCountrySummary(country);
+        const data = await getCountryStats(country);
         res.json(data);
     } catch (error: any) {
         console.error(`Error fetching country stats for ${country}:`, error.message);
@@ -142,7 +141,7 @@ app.get('/indicator-stats/:country/:indicator', async (req: Request, res: Respon
     const country = req.params.country.toUpperCase().trim();
     const indicator = req.params.indicator.trim();
     try {
-        const data = await fetchSingleIndicator(country, indicator);
+        const data = await getIndicatorStats(country, indicator);
         res.json(data);
     } catch (error: any) {
         console.error(`Error fetching indicator stats for ${country}:`, error.message);
@@ -167,7 +166,7 @@ app.listen(port, (): void => {
 
 ## API Documentation
 
-### fetchCountrySummary(country: string): Promise<CountryStats>
+### getCountryStats(country: string): Promise<CountryStats>
 
 Fetches comprehensive statistics for a specified country.
 
@@ -206,7 +205,7 @@ Fetches comprehensive statistics for a specified country.
 }
 ```
 
-### fetchSingleIndicator(country: string, indicator: string): Promise<DataEntry[]>
+### getIndicatorStats(country: string, indicator: string): Promise<DataEntry[]>
 
 Fetches data for a specific indicator within a given country.
 

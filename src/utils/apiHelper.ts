@@ -1,9 +1,10 @@
 import axios from 'axios';
 import { CountryStats, WorldBankResponse, DataEntry, AllIndicator, IndicatorsListResponse } from '../types/countryModel';
 import indicatorsMap from './indicatorsMap.json';
-
+import * as allIndicatorsMap from './all_indicators.json';
 
 type IndicatorsMap = { [principal: string]: { [indicatorCode: string]: string } };
+
 
 const parsedIndicatorsMap: IndicatorsMap = indicatorsMap;
 
@@ -151,35 +152,10 @@ export const fetchSingleIndicator = async (country: string, indicator: string): 
  * @throws Will throw an error if fetching fails.
  */
 export const get_all_indicators = async (): Promise<AllIndicator[]> => {
-    const baseUrl = 'https://api.worldbank.org/v2/indicator';
-    const perPage = 50;
-    let currentPage = 1;
-    let totalPages = 1;
-    const allIndicators: AllIndicator[] = [];
+    // const baseUrl = 'https://api.worldbank.org/v2/indicator';
 
     try {
-        do {
-            const response = await axios.get(`${baseUrl}?format=json&per_page=${perPage}&page=${currentPage}`);
-
-            if (!response.data || !Array.isArray(response.data) || response.data.length < 2) {
-                throw new Error(`Invalid response structure on page ${currentPage}`);
-            }
-
-            const [meta, indicators] = response.data as IndicatorsListResponse;
-
-            indicators.forEach(indicator => {
-                allIndicators.push({
-                    id: indicator.id,
-                    name: indicator.name,
-                    sourceOrganization: indicator.sourceOrganization,
-                    sourceNote: indicator.sourceNote,
-                });
-            });
-
-            totalPages = meta.pages;
-            currentPage++;
-        } while (currentPage <= totalPages);
-
+        let allIndicators: AllIndicator[] = allIndicatorsMap as AllIndicator[];
         return allIndicators;
     } catch (error: any) {
         throw new Error(`Failed to fetch all indicators: ${error.message}`);

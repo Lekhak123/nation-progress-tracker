@@ -1,6 +1,6 @@
 {
   "name": "nation-progress-tracker",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Wrapper for the World Bank API, enabling users to fetch and manage country-specific statistics across sectors like economy, education, health, and social development.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -19,25 +19,26 @@
     "start": "node dist/index.js",
     "dev": "ts-node src/index.ts"
   },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
-  },
   "keywords": [
-    "development",
+    "nation-progress-tracker",
     "worldbank",
+    "nation-progress",
+    "progress-tracker",
     "api",
     "wrapper",
-    "nodejs",
     "economy",
-    "equality",
-    "infrastructure"
+    "education",
+    "health",
+    "social-development"
   ],
   "author": "Lekhak123",
   "license": "MIT",
   "dependencies": {
     "axios": "^1.7.9",
     "express": "^4.21.2",
-    "nation-progress-tracker": "file:"
+    "i": "^0.3.7",
+    "nation-progress-tracker": "file:",
+    "npm": "^11.1.0"
   },
   "devDependencies": {
     "@types/express": "^5.0.0",
